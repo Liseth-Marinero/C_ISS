@@ -10,7 +10,7 @@ CREATE TABLE usuarios (
     tipo INTEGER NOT NULL,
     token VARCHAR(10) NULL,
     correo VARCHAR(255) NULL,
-    foto text NULL,
+    foto text NULL
 );
 /*
     Claves
@@ -94,5 +94,5 @@ CREATE TABLE clientes (
     dui VARCHAR(10) NOT NULL,
     nit VARCHAR(17),
     direccion TEXT,
-    telefono VARCHAR(9),
+    telefono VARCHAR(9)
 );
