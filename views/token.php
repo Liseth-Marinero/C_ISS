@@ -17,7 +17,7 @@
  
          $update =  CRUD("UPDATE usuarios SET token='$token' WHERE usuario='$user'","u");    
     ?>
-    <?php if(update):?>
+    <?php if($update):?>
         <script>
             alertify.success("Token envíado favor verificar su correo...");
             $("#data").load("./index.php?cc=1");

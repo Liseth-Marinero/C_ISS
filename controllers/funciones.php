@@ -102,7 +102,7 @@
         $cadena = "0123456789abcdefghijklmnopqrstuwxyz";
         for ($i=0;$i < $length;$i++)
         {
-            $key .= $cadena{rand(0,35)};
+            $key .= $cadena[rand(0,35)];
         }
         return $key;
     }
@@ -179,4 +179,3 @@
         }
     }
 ?>
-
