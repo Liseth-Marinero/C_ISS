@@ -31,7 +31,7 @@
                             alertify.success(msj);
                             setTimeout(function() {
                                 window.location.href = "index.php";
-                              }, 2000);
+                            }, 2000);
                         </script>';
                 }
                 else
@@ -41,7 +41,7 @@
                             alertify.error(msj);
                             setTimeout(function() {
                                 window.location.href = "index.php";
-                              }, 1000);
+                            }, 1000);
                         </script>';
                 }
             }
@@ -179,3 +179,4 @@
         }
     }
 ?>
+

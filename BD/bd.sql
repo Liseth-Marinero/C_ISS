@@ -45,6 +45,21 @@ CREATE TABLE proveedores (
     correo VARCHAR(50)
 );
 
+CREATE TABLE codregistros(
+    idcr INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    codreg VARCHAR(20) NOT NULL,
+    nombre_registro VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE detalle_inventario(
+    iddi INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    idinventario INT NOT NULL,
+    idproducto INT NOT NULL,
+    fecha_ingreso DATE,
+    idcategoria INT NOT NULL,
+    stock FLOAT 
+);
+
 CREATE TABLE productos (
     idproducto INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     codproducto VARCHAR(10),

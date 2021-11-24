@@ -20,7 +20,7 @@
         echo $passw1 = $_POST['passw1'];
         echo $passw2 = $_POST['passw2'];
 
-       CambioClave($token,$passw1,$passw2);
+    CambioClave($token,$passw1,$passw2);
     }
     else
     {
