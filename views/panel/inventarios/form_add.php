@@ -13,6 +13,7 @@
     $precio_venta = buscavalor("productos","precio_venta","idproducto='$idproducto'");
 ?>
 
+
 <form id="NewAddProducto">    
     <input type="hidden" name="idproducto" value="<?php echo $idproducto?>">
     <input type="hidden" name="idinventario" value="<?php echo $idinventario?>">
