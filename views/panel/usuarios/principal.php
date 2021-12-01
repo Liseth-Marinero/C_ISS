@@ -78,28 +78,31 @@
         </div>
     </div>
     <?php if($dataUser):?>
-        <?php include 'table_usuarios.php'; ?>
+        <div class="table-responsive">
+            <?php include 'table_usuarios.php'; ?>
+        </div>
+        
         <?php if($num_registro > $registros):?>
             <?php if($pagina == 1):?>
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                    <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php elseif($pagina == $paginas): ?>
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
                 </div>
             <?php else:?>
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
 
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                        <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php endif ?>

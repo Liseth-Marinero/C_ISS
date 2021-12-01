@@ -11,7 +11,10 @@
     foreach ($DataCategoria AS $result)
     {
         $categoria = $result['categoria'];
+       
     }
+    //$DataTipo = CRUD("SELECT * FROM tipo_usuario WHERE tipo != '$tipo'","s");
+    //$nombre_tipo = buscavalor("tipo_usuario","nombre_tipo","tipo = '$tipo'");
 ?>
 <script src="./public/js/funciones-categorias.js"></script>
 <script src="./public/js/funciones.js"></script>

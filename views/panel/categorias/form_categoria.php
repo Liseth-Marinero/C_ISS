@@ -2,10 +2,11 @@
     include '../../../models/conexion.php';
     include '../../../controllers/funciones.php';
     include '../../../models/procesos.php';
+
 ?>
 <script src="./public/js/funciones-categorias.js"></script>
 <script src="./public/js/funciones.js"></script>
-<form id="FormNewCategoria" enctype="multipart/formdata">
+<form id="FormNewCate" enctype="multipart/formdata">
     
     <div class="input-group mb-3">
         <div class="input-group-prepend">

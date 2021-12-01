@@ -1,23 +1,12 @@
 $(document).ready(function() {
-    /* Carga contenido Categoria*/
-    $(".categoria").click(function(event) {
+    /* carga contenido Categorias*/
+    $(".categorias").click(function(event) {
         $("#contenido-panel").load("./views/panel/categorias/principal.php");
         event.preventDefault();
     });
-    /* Despliega Modal Registro de Categoria*/
-    $("a.new-cate").click(function(event) {
-        $("#ModalNewCategoria").modal("show");
-        $("#DataFormCategoria").load("./views/panel/categorias/form_categorias.php");
-        event.preventDefault();
-    });
-    /* Despliega Modal Editar Usuario*/
-    $(".upd-cate").click(function() {
-        var idcategoria = $(this).attr("id-categoria");
-        $('#CateUpd').modal('show');
-        $("#dataCate").load("./views/panel/categorias/edit_form_categoria.php?idcategoria=" + idcategoria);
-    });
-    /* Paginado*/
-    $("a.pagina").click(function(event) {
+
+     /* Paginado*/
+     $("a.pagina").click(function(event) {
         var num, reg;
         num = $(this).attr("v-num");
         reg = $(this).attr("num-reg");
@@ -33,10 +22,10 @@ $(document).ready(function() {
         event.preventDefault();
     });
 
-    /* Busca Categoria*/
-    $("#like-categoria").on('change', function(event) {
+    /* Buscar Categoria*/
+    $("#like-cate").on('change', function(event) {
         var valor;
-        valor = $("#like-categoria").val();
+        valor = $("#like-cate").val();
         if (valor.trim() == "") {
             alertify.alert("Busca Categoria", "No ingreso el nombre ó código de categoria a buscar...");
             event.preventDefault();
@@ -47,25 +36,17 @@ $(document).ready(function() {
         }
     });
 
-    /* Eliminar Categoria */
-    $("a.del-cate").click(function(event) {
-        var idcategoria = $(this).attr("id-categoria");
-        alertify.confirm('Eliminar Categoria', 'Seguro/a de eliminar la categoria',
-            function() {
-                $("#contenido-panel").load("./views/panel/categorias/del.php?idcategoria=" + idcategoria);
-                event.preventDefault();
-            },
-            function() {
-                alertify.error('Proceso cancelado...');
-            });
+    /* Despliega Modal Registro Categoria*/
+    $("a.new-cate").click(function(event) {
+        $("#ModalNewCategoria").modal("show");
+        $("#DataFormCategoria").load("./views/panel/categorias/form_categoria.php");
         event.preventDefault();
     });
 
-    /* Nueva Categoria*/
-    $("#FormNewCategoria").on("submit", function(event) {
+    /*Guardar nueva categoria*/
+    $("#FormNewCate").on("submit", function(event) {
         event.preventDefault();
-        
-            var formData = new FormData(document.getElementById("FormNewCategoria"));
+        var formData = new FormData(document.getElementById("FormNewCate"));
             formData.append("dato", "valor");
             $.ajax({
                     url: "./views/panel/categorias/insert.php",
@@ -79,11 +60,23 @@ $(document).ready(function() {
                 .done(function(res) {
                     $("#contenido-panel").html(res);
                 });
-        
+              
     });
-    /* Editar Categoria*/
+    /* Despliega Modal para Editar Categoria*/
+    $(".upd-cate").click(function() {
+        var idcategoria = $(this).attr("id-categoria");
+        $('#CateUpd').modal('show');
+        $("#dataCategoria").load("./views/panel/categorias/edit_form_categoria.php?idcategoria=" + idcategoria);
+    });
+
+    /* Actualizar Categoria*/
     $("#UpdateCategoria").on("submit", function(event) {
+        var tipo = $('#tipo-user').val();
         event.preventDefault();
+        if (tipo == 0) {
+            alertify.alert("Registro Usuario", "No seleciono el tipo de usuario...");
+            event.preventDefault();
+        } else {
             var formData = new FormData(document.getElementById("UpdateCategoria"));
             formData.append("dato", "valor");
             $.ajax({
@@ -98,5 +91,20 @@ $(document).ready(function() {
                 .done(function(res) {
                     $("#contenido-panel").html(res);
                 });
+        }
+    });
+
+    /* Eliminar Categoria */
+    $("a.del-cate").click(function(event) {
+        var idcategoria = $(this).attr("id-categoria");
+        alertify.confirm('Eliminar Categoria', '¿Seguro/a de eliminar esta categoria?',
+            function() {
+                $("#contenido-panel").load("./views/panel/categorias/del.php?idcategoria=" + idcategoria);
+                event.preventDefault();
+            },
+            function() {
+                alertify.error('Proceso cancelado...');
+            });
+        event.preventDefault();
     });
 });

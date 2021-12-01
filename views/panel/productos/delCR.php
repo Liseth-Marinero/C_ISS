@@ -4,25 +4,39 @@
     include '../../../controllers/funciones.php';
     include '../../../models/procesos.php';
 
-    $idcategoria = $_GET['idproductos'];
+    $idcodreg = $_GET['idcodreg'];
 
-    $tabla = "productos";
-    $condicion = "idproductos='$idproductos'";
+    $codregistro = buscavalor("codregistros","codreg","idcr='$idcodreg'");
 
-    $insert = CRUD("DELETE FROM $tabla  WHERE $condicion","d");
-
-    if($insert)
+    $buscaData = buscavalor("productos","COUNT(codproducto)","codproducto='$codregistro'");
+    
+    if($buscaData !=0)
     {
-        echo '<script>
-                alertify.success("Producto eliminada...");
-                $("#contenido-panel").load("./views/panel/productos/principal.php");
+        echo '<script> 
+                alertify.alert("Eliminar Código Producto","Codigo Registro/producto no puede ser eliminado ya que se encuentra asignado a un producto");
+                $("#contenido-panel").load("./views/panel/productos/principal_registro.php");
             </script>';
     }
     else
     {
-        echo '<script>
-                alertify.error("Error producto no eliminada...");
-                $("#contenido-panel").load("./views/panel/productos/principal.php");
-            </script>';
+        $tabla = "codregistros";
+        $condicion = "idcr='$idcodreg'";
+
+        $del = CRUD("DELETE FROM $tabla WHERE $condicion","d");
+
+        if($del)
+        {
+            echo '<script> 
+                    alertify.success("Codigo Registro/producto eliminado");
+                    $("#contenido-panel").load("./views/panel/productos/principal_registro.php");
+                </script>';
+        }else
+        {
+            echo '<script> 
+                    alertify.error("Error: Codigo Registro/producto no eliminado");
+                    $("#contenido-panel").load("./views/panel/productos/principal_registro.php");
+                </script>';
+        }
     }
+
 ?>

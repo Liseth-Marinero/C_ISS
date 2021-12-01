@@ -12,8 +12,8 @@
             } 
             else 
             {
-                $user = "root";
-                $pass = "";
+                $user = "poo";
+                $pass = "poo";
                 $host = "localhost";
                 $bd = "iss";
             }

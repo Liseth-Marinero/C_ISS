@@ -8,9 +8,9 @@
     <thead class="bg-dark text-white cHead">
         <tr>
             <th class="ch">N°</th>
-            <th class="ch">Cod. Producto</th>
-            <th class="ch">Cod. Registro</th>
-            <th class="ch">Cod. Inventario</th>
+            <th class="ch">Código Producto</th>
+            <th class="ch">Código Registro</th>
+            <th class="ch">Código inventario</th>
             <th class="ch">Producto</th>
             <th class="ch">Descripcion</th>
             <th class="ch">Precio Unitario</th>
@@ -20,22 +20,37 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($dataID as $result) : ?>
-            <?php
+        <?php foreach ($dataDI as $result) : ?>
+            <?php 
                 $idproducto = $result['idproducto'];
-                $codregistro = $result["productos","codproducto",
-                "idproducto = $idproducto'"];
+                $idcategoria = $result['idcategoria'];
+
+                $codregistro = buscavalor("productos","codproducto","idproducto='$idproducto'");
+
+                $producto = buscavalor("productos","producto","idproducto='$idproducto'");
+
+                $descripcion = buscavalor("productos","descripcion","idproducto='$idproducto'");
+
+                $precio_venta = buscavalor("productos","precio_venta","idproducto='$idproducto'");
+
+                $stock = buscavalor("productos","stock","idproducto='$idproducto'");
+
+                $categoria = buscavalor("categorias","categoria","idcategoria='$idcategoria'");
+            ?>
             <tr>
                 <td class="ch"><?php echo $cont += 1; ?></td>
-                <td class="ch"><?php echo $result['idproducto']; ?></td>
-                <td class="ch"><?php echo $result $idproducto; ?></td>
-                <td class="ch"><?php echo $result['categoria']; ?></td>
+                <td class="ch"><?php echo $idproducto ?></td>
+                <td class="ch"><?php echo $codregistro; ?></td>
+                <td class="ch"><?php echo $result['idinventario']; ?></td>
+                <td class="ch"><?php echo $producto; ?></td>
+                <td class="ch"><?php echo $descripcion; ?></td>
+                <td class="ch"><?php echo $precio_venta; ?></td>
+                <td class="ch"><?php echo $stock; ?></td>
+                <td class="ch"><?php echo $categoria; ?></td>
                 <td class="ch">
-                    <a href="" class="btn btn-success upd-cate" data-toggle="modal" id-categoria="<?php echo $result['idcategoria']; ?>"><i class="fas fa-user-edit"></i></a>
+                    <a href="" class="btn btn-primary AddCart" data-toggle="modal" id-producto="<?php echo $idproducto;?>" id-inventario="<?php echo $result['idinventario'];;?>"><i class="fas fa-cart-plus"></i></a>
                 </td>
-                <td class="ch">
-                    <a href="" class="btn btn-danger del-cate" id-categoria="<?php echo $result['idcategoria']; ?>"><i class="fas fa-user-times"></i></a>
-                </td>
+                
             </tr>
         <?php endforeach ?>
     </tbody>

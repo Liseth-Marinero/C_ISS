@@ -52,6 +52,7 @@
     $paginas = ceil($num_registro / $registros);
 ?>
     <script src="./public/js/funciones-navbar.js"></script>
+    <!--<script src="./public/js/funciones-usuarios.js"></script>-->
     <script src="./public/js/funciones-categorias.js"></script>
     <script src="./public/js/js_funciones.js"></script>
     <script src="./public/js/text-oculto.js"></script>
@@ -59,7 +60,7 @@
     <div style="margin-bottom: 10px;">
         <div class="row">
             <div class="col-md-2">
-                <a href="" class="btn btn-success new-cate"><i class="fas fa-sitemap"></i></a>
+                <a href="" class="btn btn-success new-cate"><i class="fas fa-plus-square"></i></a>
             </div>
             <div class="col-md-4">
                 <select id="select-reg" class="custom-select" style="width:250px">
@@ -73,7 +74,7 @@
             </div>
 
             <div class="col-md-6">
-                <input type="search" class="form-control" placeholder="Busca Categorias" id="like-categoria" autocomplete="off">
+                <input type="search" class="form-control" placeholder="Busca Categoria" id="like-cate" autocomplete="off">
             </div>
         </div>
     </div>
@@ -81,25 +82,26 @@
         <?php include 'table_categorias.php'; ?>
         <?php if($num_registro > $registros):?>
             <?php if($pagina == 1):?>
+               
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                    <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php elseif($pagina == $paginas): ?>
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
                 </div>
             <?php else:?>
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
 
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                        <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php endif ?>

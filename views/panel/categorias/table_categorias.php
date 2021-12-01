@@ -8,7 +8,7 @@
     <thead class="bg-dark text-white cHead">
         <tr>
             <th class="ch">N°</th>
-            <th class="ch">Codigo</th>
+            <th class="ch">N° Categoria</th>
             <th class="ch">Categoria</th>
             <th class="ch">Editar</th>
             <th class="ch">Eliminar</th>
@@ -21,10 +21,10 @@
                 <td class="ch"><?php echo $result['idcategoria']; ?></td>
                 <td class="ch"><?php echo $result['categoria']; ?></td>
                 <td class="ch">
-                    <a href="" class="btn btn-success upd-cate" data-toggle="modal" id-categoria="<?php echo $result['idcategoria']; ?>"><i class="fas fa-user-edit"></i></a>
+                    <a href="" class="btn btn-success upd-cate" data-toggle="modal" id-categoria = "<?php echo $result['idcategoria']; ?>"><i class="fas fa-edit"></i></a>
                 </td>
                 <td class="ch">
-                    <a href="" class="btn btn-danger del-cate" id-categoria="<?php echo $result['idcategoria']; ?>"><i class="fas fa-user-times"></i></a>
+                    <a href="" class="btn btn-danger del-cate" id-categoria = "<?php echo $result['idcategoria']; ?>"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         <?php endforeach ?>

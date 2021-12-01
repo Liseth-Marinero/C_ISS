@@ -21,7 +21,7 @@
     else
     {
         echo '<script>
-                alertify.error("Error proveedor no eliminado...");
+                alertify.error("Error: proveedor no eliminado...");
                 $("#contenido-panel").load("./views/panel/proveedores/principal.php");
             </script>';
     }

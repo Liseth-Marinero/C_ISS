@@ -10,6 +10,7 @@
             <th class="ch">N°</th>
             <th class="ch">Código</th>
             <th class="ch">Usuario</th>
+            <th class="ch">Foto</th>
             <th class="ch">correo</th>
             <th class="ch">Tipo</th>
             <th class="ch">Estado</th>
@@ -24,6 +25,9 @@
                 <td class="ch"><?php echo $cont += 1; ?></td>
                 <td class="ch"><?php echo $result['idusuario']; ?></td>
                 <td class="ch"><?php echo $result['usuario']; ?></td>
+                <td class="ch">
+                    <img src="./public/img/usuarios/<?php echo $result['foto'];?>" width="50px" alt="">
+                </td>
                 <td class="ch"><?php echo $result['correo']; ?></td>
                 <td class="ch">
                     <?php

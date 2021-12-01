@@ -21,7 +21,7 @@
     else
     {
         echo '<script>
-                alertify.error("Error categoria no eliminada...");
+                alertify.error("Error: categoria no eliminada...");
                 $("#contenido-panel").load("./views/panel/categorias/principal.php");
             </script>';
     }

@@ -3,42 +3,38 @@
     include '../../../controllers/funciones.php';
     include '../../../models/procesos.php';
 
-    $idcr = $_POST['idcr'];
-    $codreg = $_POST['codreg'];
-    $nombrereg = $_POST['nombrereg'];
+    $codreg = $_POST['idcodreg'];
+    $nombre_registro = $_POST['nombrereg'];
     
+    $tabla ="codregistros";
+    $campos = "codreg,nombre_registro";
+    $valores = "'$codreg','$nombre_registro'";
 
-
-    $tabla = "codregistros";
-    $campos = "idcr, codreg, nombrereg";
-    $valores = "'$idcr', '$codreg', '$nombrereg'";
-
-    $query1 = "SELECT * FROM codregistros WHERE codregistros = '$codregistros'";
-
+    $query1 = "SELECT *FROM codregistros WHERE codreg = '$codreg'";   
 ?>
-<?php if(CountReg($query1)!= 0):?>
+<?php if(CountReg($query1)!=0):?>
     <script>
-        alertify.error("Producto ya registrado intente con uno nuevo...");
-        $("#ModalNewProductos").modal("hide");
-        $("#contenido-panel").load("./views/panel/productos/principal.php");
+        alertify.error("Codigo/Registro ya existe, intente con uno nuevo...");
+        $("#ModalNewCR").modal("hide");
+        $("#contenido-panel").load("./views/panel/productos/principal_registro.php");
     </script>
 <?php else:?>
-    <?php 
-                $query2 = "INSERT INTO $tabla($campos) VALUES($valores)";
-
-                if(CRUD($query2,"i")){
-                    echo '<script>
-                            alertify.success("Datos registrados...");
-                            $("#ModalNewProductos").modal("hide");
-                            $("#contenido-panel").load("./views/panel/productos/principal.php");
-                        </script>';
-                }
-                else{
-                    echo '<script>
-                        alert("Error al registrar datos...");
-                        $("#ModalNewProductosr").modal("hide");
-                        $("#contenido-panel").load("./views/panel/productoss/principal.php");
-                    </script>';
-                }
-    ?>
+    
+    <?php  $query2 = "INSERT INTO $tabla($campos) VALUES($valores)";
+        if(CRUD($query2,"i")){
+            echo '<script>
+                    alertify.success("Datos registrados...");
+                    $("#ModalNewCR").modal("hide");
+                    $("#contenido-panel").load("./views/panel/productos/principal_registro.php");
+                </script>';
+        }
+        else{
+            echo '<script>
+                    alert("Error al registrar datos...");
+                    $("#ModalNewCR").modal("hide");
+                    $("#contenido-panel").load("./views/panel/productos/principal_registro.php");
+                </script>';
+        }
+        ?>
+    
 <?php endif?>

@@ -3,29 +3,26 @@
     include '../../../controllers/funciones.php';
     include '../../../models/procesos.php';
     
-    $idcr = $_POST['idcr'];
+    $idcodreg = $_POST['idcr'];
     $codreg = $_POST['codreg'];
-    $nombrereg = $_POST['nombrereg'];
-
+    $nombre_registro = $_POST['nombrereg'];
     
+
     $tabla = "codregistros";
-    $campos = "codreg='$codreg',nombre_registro='$nombrereg'";
-    $condicion = "idcr='$idcr'";
+    $campos = "codreg='$codreg', nombre_registro ='$nombre_registro'";
+    $condicion ="idcr ='$idcodreg'";
+    $update = CRUD("UPDATE $tabla SET $campos WHERE $condicion","u");
 
-    $insert = CRUD("UPDATE $tabla SET $campos WHERE $condicion","i");
-    
-    if($insert){
+    if($update){
         echo '<script>
-                alertify.success("Código registro actualizado...");
-                $("#ModalEditCR").modal("hide");
-                $("#contenido-panel").load("./views/panel/productos/principal.php");
+                alertify.success("Datos actualizados...");
+                $("#contenido-panel").load("./views/panel/productos/principal_registro.php");
             </script>';
     }
     else{
         echo '<script>
                 alertify.error("Error al actualizar datos...");
-                $("#ProveUpd").modal("hide");
-                $("#contenido-panel").load("./views/panel/productos/principal.php");
+                $("#contenido-panel").load("./views/panel/productos/principal_registro.php");
             </script>';
     }
-
+?>

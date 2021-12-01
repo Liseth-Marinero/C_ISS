@@ -3,15 +3,13 @@
     include '../../../models/conexion.php';
     include '../../../controllers/funciones.php';
     include '../../../models/procesos.php';
-   
     $cont = 0;
     
     if(isset($_GET['num']))
     {
         $pagina = $_GET['num'];
     }
-    else
-    {
+    else{
         $pagina = 0;
     }
 
@@ -19,9 +17,8 @@
     {
         $registros = $_GET['num_reg'];
     }
-    else
-    {
-        $registros = 10;
+    else{
+        $registros = 1;
     }
     
 
@@ -41,7 +38,7 @@
     {
         $valor = $_GET['valor'];
         
-        $queryLike = "SELECT * FROM codregistros WHERE codreg LIKE '%$valor%' OR pro LIKE '%$valor%'";
+        $queryLike = "SELECT * FROM codregistros WHERE codreg LIKE '%$valor%'";
 
         $dataCodReg = CRUD($queryLike,"s");
     }
@@ -50,16 +47,15 @@
 
     }
 
-    
     $num_registro = CountReg($query);
     $paginas = ceil($num_registro / $registros);
 ?>
-    <script src="./public/js/funciones-navbar.js"></script>
-    <script src="./public/js/funciones-productos.js"></script>
-    <script src="./public/js/js_funciones.js"></script>
-    <script src="./public/js/text-oculto.js"></script>
-   
-    <div style="margin-bottom: 10px;">
+<script src="./public/js/funciones-navbar.js"></script>
+<script src="./public/js/funciones-productos.js"></script>
+<script src="./public/js/js_funciones.js"></script>
+<script src="./public/js/text-oculto.js"></script>
+
+<div style="margin-bottom: 10px;">
         <div class="row">
             <div class="col-md-2">
                 <a href="" class="btn btn-success BtnNewCR"><i class="fas fa-plus"></i></a>
@@ -76,7 +72,7 @@
             </div>
 
             <div class="col-md-6">
-                <input type="search" class="form-control" placeholder="Busca Código Registro" id="likeCR" autocomplete="off">
+                <input type="search" class="form-control" placeholder="Buscar Codigo registro de Producto" id="likeCR" autocomplete="off">
             </div>
         </div>
     </div>
@@ -84,28 +80,29 @@
         <div class="table-responsive">
             <?php include 'table_codreg.php'; ?>
         </div>
-
+       
         <?php if($num_registro > $registros):?>
             <?php if($pagina == 1):?>
+               
                 <div style="text-align: center;">
                     <a href="" class="btn paginaCR" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                    <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php elseif($pagina == $paginas): ?>
                 <div style="text-align: center;">
                     <a href="" class="btn paginaCR" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
                 </div>
             <?php else:?>
                 <div style="text-align: center;">
                     <a href="" class="btn paginaCR" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
 
                     <a href="" class="btn paginaCR" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                        <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php endif ?>
@@ -114,4 +111,3 @@
         <div class="alert alert-info">Datos no encontrados...</div>
     <?php endif?>
 </div>
-            

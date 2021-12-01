@@ -38,28 +38,33 @@
     {
         $valor = $_GET['valor'];
         
-        $queryLike = "SELECT * FROM detalle_inventario WHERE idcategoria LIKE '%$valor%' OR categoria LIKE '%$valor%'";
+        $queryLike = "SELECT * FROM detalle_inventario AS di INNER JOIN productos AS p ON p.idproducto = di.idproducto WHERE p.producto LIKE '%$valor%' OR p.codproducto LIKE '%$valor%'";
 
-        $dataCate = CRUD($queryLike,"s");
+        $dataDI = CRUD($queryLike,"s");
     }
     else{
-        $dataCate = CRUD("SELECT * FROM detalle_inventario ORDER BY idcategoria LIMIT $inicio,$registros", "s");
+        $dataDI = CRUD("SELECT * FROM detalle_inventario ORDER BY idcategoria LIMIT $inicio,$registros", "s");
 
     }
 
     
     $num_registro = CountReg($query);
     $paginas = ceil($num_registro / $registros);
+
+    $idusuario = $_SESSION['idusuario'];
+    $idempleado = buscavalor("empleados","idempleado","idusuario='$idusuario'");
+
+    $buscaVentas = buscavalor("detalle_preventa","COUNT(iddpv)","estado = 0 AND idempleado = '$idempleado'");
 ?>
     <script src="./public/js/funciones-navbar.js"></script>
-    <script src="./public/js/funciones-categorias.js"></script>
+    <script src="./public/js/funciones-inventarios.js"></script>
     <script src="./public/js/js_funciones.js"></script>
     <script src="./public/js/text-oculto.js"></script>
 
     <div style="margin-bottom: 10px;">
         <div class="row">
-            <div class="col-md-2">
-                <a href="" class="btn btn-success new-cate"><i class="fas fa-sitemap"></i></a>
+            <div class="col-md-4">
+                <a href="" class="btn btn-warning ver-carrito"><?php echo $buscaVentas;?><i class="fas fa-cart-plus"></i></a>
             </div>
             <div class="col-md-4">
                 <select id="select-reg" class="custom-select" style="width:250px">
@@ -72,34 +77,38 @@
                 </select>
             </div>
 
-            <div class="col-md-6">
-                <input type="search" class="form-control" placeholder="Busca Producto" id="like-categoria" autocomplete="off">
+            <div class="col-md-4">
+                <input type="search" class="form-control" placeholder="Buscar Producto" id="like" autocomplete="off">
             </div>
         </div>
     </div>
     <?php if($dataDI):?>
-        <?php include 'table_di.php'; ?>
+        <div class="table-responsive">
+            <?php include 'table_di.php'; ?>
+        </div>
+        
         <?php if($num_registro > $registros):?>
             <?php if($pagina == 1):?>
+               
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                    <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php elseif($pagina == $paginas): ?>
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
                 </div>
             <?php else:?>
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
 
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                        <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php endif ?>
@@ -108,4 +117,9 @@
         <div class="alert alert-info">Datos no encontrados...</div>
     <?php endif?>
 </div>
-        
+
+<?php 
+     /**CARRITO DE VENTA */
+     include '../../modals/add_cart.php';
+?>
+            

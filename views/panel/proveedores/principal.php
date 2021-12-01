@@ -40,10 +40,10 @@
         
         $queryLike = "SELECT * FROM proveedores WHERE idproveedor LIKE '%$valor%' OR proveedor LIKE '%$valor%'";
 
-        $dataProve = CRUD($queryLike,"s");
+        $dataProv = CRUD($queryLike,"s");
     }
     else{
-        $dataProve = CRUD("SELECT * FROM proveedores ORDER BY idproveedor LIMIT $inicio,$registros", "s");
+        $dataProv = CRUD("SELECT * FROM proveedores ORDER BY idproveedor LIMIT $inicio,$registros", "s");
 
     }
 
@@ -52,6 +52,7 @@
     $paginas = ceil($num_registro / $registros);
 ?>
     <script src="./public/js/funciones-navbar.js"></script>
+    <!--<script src="./public/js/funciones-usuarios.js"></script>-->
     <script src="./public/js/funciones-proveedores.js"></script>
     <script src="./public/js/js_funciones.js"></script>
     <script src="./public/js/text-oculto.js"></script>
@@ -59,7 +60,7 @@
     <div style="margin-bottom: 10px;">
         <div class="row">
             <div class="col-md-2">
-                <a href="" class="btn btn-success new-prove"><i class="fas fa-parachute-box "></i></a>
+                <a href="" class="btn btn-success new-prov"><i class="fas fa-plus-square"></i></a>
             </div>
             <div class="col-md-4">
                 <select id="select-reg" class="custom-select" style="width:250px">
@@ -73,33 +74,34 @@
             </div>
 
             <div class="col-md-6">
-                <input type="search" class="form-control" placeholder="Busca Proveedor" id="like-prove" autocomplete="off">
+                <input type="search" class="form-control" placeholder="Buscar Proveedor" id="like-prov" autocomplete="off">
             </div>
         </div>
     </div>
-    <?php if($dataProve):?>
+    <?php if($dataProv):?>
         <?php include 'table_proveedores.php'; ?>
         <?php if($num_registro > $registros):?>
             <?php if($pagina == 1):?>
+               
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                    <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php elseif($pagina == $paginas): ?>
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
                 </div>
             <?php else:?>
                 <div style="text-align: center;">
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina - 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
+                        <i class="fas fa-chevron-circle-left fa-2x"></i>
                     </a>
 
                     <a href="" class="btn pagina" v-num="<?php echo ($pagina + 1); ?>" num-reg="<?php echo $registros;?>">
-                        <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
+                        <i class="fas fa-chevron-circle-right fa-2x"></i>
                     </a>
                 </div>
             <?php endif ?>
@@ -108,4 +110,3 @@
         <div class="alert alert-info">Datos no encontrados...</div>
     <?php endif?>
 </div>
-            

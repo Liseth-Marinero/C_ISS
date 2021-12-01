@@ -7,10 +7,9 @@
 <table class="table table-borderless table-hover table-responsive-xl">
     <thead class="bg-dark text-white cHead">
         <tr>
-        <th class="ch">N°</th>
+            <th class="ch">N°</th>
             <th class="ch">Código</th>
             <th class="ch">Producto</th>
-            <!-- th class="ch">Descripcion</th-->
             <th class="ch">Fecha</th>
             <th class="ch">Precio</th>
             <th class="ch">Stock</th>
@@ -20,26 +19,22 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($dataProduto as $result) : ?>
+        <?php foreach ($dataProducto as $result) : ?>
             <tr>
                 <td class="ch"><?php echo $cont += 1; ?></td>
                 <td class="ch"><?php echo $result['codproducto']; ?></td>
                 <td class="ch"><?php echo $result['producto']; ?></td>
-                <!-- td class="ch" style="align:justify;width:600px;">
-                    <?php //echo $result['descripcion']; ?>
-                </td-->  
-
-                <td class="ch"><?php echo $result['fecha_ingreso']; ?></td> 
-                <td class="ch"><?php echo $result['precio_venta']; ?></td> 
+                <td class="ch"><?php echo $result['fecha_ingreso']; ?></td>
+                <td class="ch"><?php echo $result['precio_venta']; ?></td>
                 <td class="ch"><?php echo $result['stock']; ?></td>
                 <td class="ch">
-                    <img src="./public/img/productos/<?php echo $result['imagen']; ?>
-                </td> 
-                <td class="ch">
-                    <a href="" class="btn btn-success BtnEditProducto" data-toggle="modal" id-producto="<?php echo $result['idproducto']; ?>"><i class="fas fa-user-edit"></i></a>
+                    <img src="./public/img/productos/<?php echo $result['imagen']; ?>" width="150px" alt="">
                 </td>
                 <td class="ch">
-                    <a href="" class="btn btn-danger BtnDelProducto" id-producto="<?php echo $result['idproducto']; ?>"><i class="fas fa-user-times"></i></a>
+                    <a href="" class="btn btn-success BtnEditProducto" data-toggle="modal" id-producto = "<?php echo $result['idproducto']; ?>" codproducto = "<?php echo $result['codproducto']; ?>"><i class="fas fa-edit"></i></a>
+                </td>
+                <td class="ch">
+                    <a href="" class="btn btn-danger BtnDelProducto" id-producto = "<?php echo $result['idproducto']; ?>"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         <?php endforeach ?>
